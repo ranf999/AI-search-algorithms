@@ -9,7 +9,7 @@ public:
 	string getAlgo(vector<string> file);
 	string getStart(vector<string> file);
 	string getGoal(vector<string> file);
-	unordered_map<string,list<Node>> getMap(vector<string> file);
+	unordered_map<string,vector<Node>> getMap(vector<string> file);
 };
 
 #endif

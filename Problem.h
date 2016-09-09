@@ -8,7 +8,7 @@ class Problem
 protected:
 	string startState;
 	string goalState;
-	unordered_map<string,list> map;
+	unordered_map<string,vector<Node>> map;
 	Problem(vector<string> file);
 	~Problem();
 public:

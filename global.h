@@ -13,12 +13,12 @@
 class Node
 {
 protected:
-	string name;
+	string state;
 	int cost;
 public:
-	void setName(string name){this->name = name;}
+	void setState(string name){this->state = name;}
 	void setCost(int cost){this->cost = cost;}
-	string getName(){return this->name;}
+	string getState(){return this->state;}
 	int getCost(){return this->cost;}
 };
 
