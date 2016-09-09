@@ -6,16 +6,18 @@
 class Problem
 {
 protected:
+	string algo;
 	string startState;
 	string goalState;
 	unordered_map<string,vector<Node>> map;
 	Problem(vector<string> file);
 	~Problem();
 public:
+	string getAlgo();
 	string getStartState();
 	bool isGoalState(string state);
-	vector<string> getSuccessors(string state);
-	int getCostOfActions();
+	vector<Node> getSuccessors(string state);
+	int getCostOfAction(Node node);
 };
 
 
