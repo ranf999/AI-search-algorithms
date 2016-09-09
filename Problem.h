@@ -5,10 +5,10 @@
 
 class Problem
 {
-private:
+protected:
 	string startState;
 	string goalState;
-	unordered_map<List> map;
+	unordered_map<string,list> map;
 	Problem(vector<string> file);
 	~Problem();
 public:
@@ -16,7 +16,7 @@ public:
 	bool isGoalState(string state);
 	vector<string> getSuccessors(string state);
 	int getCostOfActions();
-}
+};
 
 
 

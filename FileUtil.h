@@ -13,6 +13,6 @@ public:
 	~FileLoader();
 	vector<string> loadFile(String filename);
 	void writeFile(string filename,vector<String> actions,vector<int> costs);
-}
+};
 
 #endif
