@@ -10,9 +10,8 @@ class FileUtil
 {
 public:
 	FileLoader();
-	~FileLoader();
-	vector<string> loadFile(String filename);
-	void writeFile(string filename,vector<String> actions,vector<int> costs);
+	vector<string> loadFile(string filename);
+	void writeFile(string filename,vector<string> actions,vector<int> costs);
 };
 
 #endif

@@ -13,6 +13,6 @@ public:
 	void setCosts(vector<int> costs);
 	vector<string> getActions();
 	vector<int> getCosts();
-}
+};
 
 #endif

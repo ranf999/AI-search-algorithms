@@ -1,6 +1,6 @@
 #include "FileUtil.h"
 
-vector<string> FileUtil::loadFile(String filename)
+vector<string> FileUtil::loadFile(string filename)
 {
 	int i = 0;
 	int j = 0;
@@ -25,7 +25,7 @@ void FileUtil::writeFile(string filename,vector<string> actions,vector<int> cost
 {
 	ofstream fout;
 	fout.open(filename);
-	if(fout.isopen())
+	if(fout.is_open())
 	{
 		for(int i=0;i<actions.size();i++)
 			fout<<actions[i]<<" "<<costs[i]<<endl;

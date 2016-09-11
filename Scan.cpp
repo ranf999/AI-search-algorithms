@@ -1,4 +1,5 @@
-#include "scan.h"
+#include "Scan.h"
+#include "Problem.h"
 
 string Scan::getAlgo(vector<string> file)
 {
@@ -30,7 +31,7 @@ unordered_map<string,vector<Node>> Scan::getMap(vector<string> file)
 	{
 		int j;
 		vector<Node> nodeList;
-		route = file[i+4];//5th line of the file is the route list
+		route = file[i+4];// the route list is from 5th line of the file
 		for(j=0;j<route.length();j++)
 		{
 			if(route[j]!=' ')
@@ -58,8 +59,9 @@ unordered_map<string,vector<Node>> Scan::getMap(vector<string> file)
 			}
 		}
 		Node node = Node();
+		node.setParent(firstState);
 		node.setState(secondState);
-		node.setCost(atoi(cost.c_str));
+		node.setCost(atoi(cost.c_str()));
 		if(map.count(firstState)>0)
 			map[firstState].push_back(node);
 		else

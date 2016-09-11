@@ -3,6 +3,8 @@
 
 #include "global.h"
 
+class Node;
+
 class Scan
 {
 public:

@@ -23,7 +23,7 @@ string Problem::getStartState()
 
 bool Problem::isGoalState(string state)
 {
-	if(state = this->goalState)
+	if(state == this->goalState)
 		return true;
 	else
 		return false;
@@ -33,3 +33,7 @@ vector<Node> Problem::getSuccessors(string state)
 	return map[state];
 }
 
+int Problem::getCostOfAction(Node node)
+{
+	return node.getCost();
+}
