@@ -9,7 +9,7 @@ using namespace std;
 class FileUtil
 {
 public:
-	FileLoader();
+	//FileLoader();
 	vector<string> loadFile(string filename);
 	void writeFile(string filename,vector<string> actions,vector<int> costs);
 };

@@ -23,7 +23,7 @@ string Problem::getStartState()
 
 bool Problem::isGoalState(string state)
 {
-	if(state == this->goalState)
+	if(state.compare(this->goalState)==0)
 		return true;
 	else
 		return false;

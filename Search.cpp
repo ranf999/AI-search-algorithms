@@ -32,7 +32,7 @@ Solution Search::BFS(Problem problem)
 	stack<string> tmp;//
 	queue<string> frontier;
    	set<string> explored;	
-	unodered_map<string,string> parent;//find parent node
+	unordered_map<string,string> parent;//find parent node
 	vector<Node> successors;
 
 	state = problem.getStartState();
@@ -46,11 +46,12 @@ Solution Search::BFS(Problem problem)
 		return solution;
 	}
 	frontier.push(state);
-	while(!frontier.isEmpty())
+	while(!frontier.empty())
 	{
 		pathCosts.push_back(depth);
 		depth++;
-		state = frontier.pop();
+		state = frontier.front();
+		frontier.pop();
 		explored.insert(state);
 		successors = problem.getSuccessors(state);
 		for(auto node:successors)
@@ -58,18 +59,20 @@ Solution Search::BFS(Problem problem)
 			if(explored.count(node.getState())==0)
 			{
 				parent[node.getState()] = node.getParent();
-				if(problem.isGoalState(node.getState()));
+				if(problem.isGoalState(node.getState()))
 				{
 					//build solution
+					pathCosts.push_back(depth);
 					string child = node.getState();
 					while(child.compare(problem.getStartState())!=0)
 					{
 						tmp.push(child);
 						child = parent[child];
 					}
-					while(!tmp.isEmpty())
+					while(!tmp.empty())
 					{
-						actions.push_back(tmp.pop());
+						actions.push_back(tmp.top());
+						tmp.pop();
 					}
 					solution.setActions(actions);
 					solution.setCosts(pathCosts);
@@ -80,5 +83,24 @@ Solution Search::BFS(Problem problem)
 		}
 	}
 }
+
+Solution Search::DFS(Problem problem)
+{
+	Solution solution;
+	return solution;
+}
+
+Solution Search::UCS(Problem problem)
+{
+	Solution solution;
+	return solution;
+}
+
+Solution Search::Astar(Problem problem)
+{
+	Solution solution;
+	return solution;
+}
+
 
 

@@ -9,9 +9,9 @@ class Search
 {
 public:
 	Solution doSearch(Problem problem);
-	Solution dfs(Problem problem);
-	Solution bfs(Problem problem);
-	Solution ucs(Problem problem);
+	Solution DFS(Problem problem);
+	Solution BFS(Problem problem);
+	Solution UCS(Problem problem);
 	Solution Astar(Problem problem);
 };
 

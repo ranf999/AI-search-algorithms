@@ -23,14 +23,16 @@ unordered_map<string,vector<Node>> Scan::getMap(vector<string> file)
 	int routeNum = atoi(file[3].c_str());
 	int cnt = 0;
 	string route;   //form:"A B 5"
-	string firstState; 
-	string secondState;
-	string cost;
+
 
 	for(int i=0;i<routeNum;i++)
 	{
 		int j;
+		string firstState;
+		string secondState;
+		string cost;
 		vector<Node> nodeList;
+		cnt = 0;
 		route = file[i+4];// the route list is from 5th line of the file
 		for(j=0;j<route.length();j++)
 		{
@@ -38,13 +40,13 @@ unordered_map<string,vector<Node>> Scan::getMap(vector<string> file)
 			{
 				switch(cnt)
 				{
-				case 1:
+				case 0:
 					firstState.push_back(route[j]);
 					break;
-				case 2:
+				case 1:
 					secondState.push_back(route[j]);
 					break;
-				case 3:
+				case 2:
 					cost.push_back(route[j]);
 					break;
 				default:

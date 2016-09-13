@@ -25,9 +25,9 @@ protected:
 	string startState;
 	string goalState;
 	unordered_map<string,vector<Node>> map;
-	Problem(vector<string> file);
-	~Problem();
+	
 public:
+	Problem(vector<string> file);
 	string getAlgo();
 	string getStartState();
 	bool isGoalState(string state);
