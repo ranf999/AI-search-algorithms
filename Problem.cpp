@@ -37,3 +37,5 @@ int Problem::getCostOfAction(Node node)
 {
 	return node.getCost();
 }
+
+

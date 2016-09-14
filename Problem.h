@@ -5,6 +5,7 @@
 
 class Node
 {
+	friend class NodeCmp;
 protected:
 	string parent;
 	string state;
@@ -17,6 +18,20 @@ public:
 	string getParent(){return this->parent;}
 	int getCost(){return this->cost;}
 };
+
+class NodeCmp
+{
+public:
+	bool operator() (const Node &lhs, const Node &rhs) const
+	{
+		if (lhs.cost > rhs.cost)
+			return true;
+		else 
+			return false;
+	}
+};
+
+
 
 class Problem
 {
