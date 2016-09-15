@@ -11,6 +11,7 @@ public:
 	string getAlgo(vector<string> file);
 	string getStart(vector<string> file);
 	string getGoal(vector<string> file);
+	unordered_map<string, int> getSunday(vector<string> file);
 	unordered_map<string,vector<Node>> getMap(vector<string> file);
 };
 

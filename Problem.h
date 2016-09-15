@@ -6,17 +6,21 @@
 class Node
 {
 	friend class NodeCmp;
+	friend class NodeCmpSunday;
 protected:
 	string parent;
 	string state;
 	int cost;
+	int sunday;
 public:
 	void setState(string name){this->state = name;}
 	void setCost(int cost){this->cost = cost;}
 	void setParent(string name){this->parent = name;}
+	void setSunday(int sunday){this->sunday = sunday;}
 	string getState(){return this->state;}
 	string getParent(){return this->parent;}
 	int getCost(){return this->cost;}
+	int getSunday(){return this->sunday;}
 };
 
 class NodeCmp
@@ -31,7 +35,17 @@ public:
 	}
 };
 
-
+class NodeCmpSunday
+{
+public:
+	bool operator() (const Node &lhs, const Node &rhs) const
+	{
+		if(lhs.sunday+lhs.cost > rhs.sunday+rhs.cost)
+			return true;
+		else
+			return false;
+	}
+};
 
 class Problem
 {

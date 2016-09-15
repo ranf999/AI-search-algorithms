@@ -166,7 +166,6 @@ Solution Search::UCS(Problem problem)
 	node.setCost(0);
 	frontier.push(node);
 	costMap[node.getState()] = node.getCost();
-	//infrontier.insert(node.getState());
 	actions.push_back(node.getState());
 	pathCosts.push_back(0);
 
@@ -220,8 +219,69 @@ Solution Search::UCS(Problem problem)
 Solution Search::Astar(Problem problem)
 {
 	Solution solution;
+	string state;
+	Node node;
+	int accumCost;
+	vector<int> pathCosts;
+	vector<string> actions;//results
+	stack<string> tmp;//
+	priority_queue<Node,vector<Node>,NodeCmpSunday> frontier;
+	set<string> explored;
+	unordered_map<string, string> parent;//find parent node
+	unordered_map<string, int> costMap;//find cost of each action
+	vector<Node> successors;
 
+	node.setState(problem.getStartState());
+	node.setCost(0);
+	frontier.push(node);
+	costMap[node.getState()] = node.getCost();
+	actions.push_back(node.getState());
+	pathCosts.push_back(0);
 
+	while (!frontier.empty())
+	{
+		node = frontier.top();
+		frontier.pop();
+		
+		if (problem.isGoalState(node.getState()))
+		{
+			//build solution
+			//
+			string childState = node.getState();
+			while (childState.compare(problem.getStartState()) != 0)
+			{
+				tmp.push(childState);
+				childState = parent[childState];
+			}
+			while (!tmp.empty())
+			{
+				actions.push_back(tmp.top());
+				pathCosts.push_back(costMap[tmp.top()]);
+				tmp.pop();
+			}
+			solution.setActions(actions);
+			solution.setCosts(pathCosts);
+			return solution;
+		}
+		explored.insert(node.getState());
+		successors = problem.getSuccessors(node.getState());
+		for (Node child : successors)
+		{
+			//if child.state is not in explored
+			if (explored.count(child.getState()) == 0)
+			{
+				accumCost = node.getCost() + child.getCost();
+				child.setCost(accumCost);
+				if(costMap.count(child.getState())==0)
+					costMap[child.getState()] = child.getCost();
+				else if(child.getCost()<costMap[child.getState()])
+					costMap[child.getState()] = child.getCost();
+				frontier.push(child);
+				parent[child.getState()] = child.getParent();
+			}
+		}
+
+	}
 	return solution;
 }
 

@@ -12,7 +12,7 @@
 #include<queue>
 #include<set>
 #include<string>
-#include "stdafx.h"
+#include<algorithm>
 using namespace std;
 
 #endif
