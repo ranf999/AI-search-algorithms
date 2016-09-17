@@ -96,9 +96,11 @@ Solution Search::DFS(Problem problem)
 	set<string> explored;
 	unordered_map<string, string> parent;//find parent node
 	vector<Node> successors;
+	set<string> infrontier;
 
 	state = problem.getStartState();
 	actions.push_back(state);
+	infrontier.insert(state);
 
 	if (problem.isGoalState(state))
 	{
@@ -114,6 +116,7 @@ Solution Search::DFS(Problem problem)
 		depth++;
 		state = frontier.top();
 		frontier.pop();
+		infrontier.erase(state);
 		if (problem.isGoalState(state))
 		{
 			//build solution
@@ -138,10 +141,11 @@ Solution Search::DFS(Problem problem)
 		for (int i=successors.size()-1; i>=0 ; i--)
 		{
 			Node node = successors[i];
-			if (explored.count(node.getState()) == 0)
+			if (explored.count(node.getState()) == 0&&infrontier.count(node.getState())==0)
 			{
 				parent[node.getState()] = node.getParent();
 				frontier.push(node.getState());
+				infrontier.insert(node.getState());
 			}
 		}
 	}
@@ -203,12 +207,16 @@ Solution Search::UCS(Problem problem)
 			{
 				accumCost = node.getCost() + child.getCost();
 				child.setCost(accumCost);
-				if(costMap.count(child.getState())==0)
-					costMap[child.getState()] = child.getCost();
-				else if(child.getCost()<costMap[child.getState()])
-					costMap[child.getState()] = child.getCost();
 				frontier.push(child);
-				parent[child.getState()] = child.getParent();
+				if(parent.count(child.getState())==0)
+					parent[child.getState()] = child.getParent();
+				else if (child.getCost()<costMap[child.getState()])
+					costMap[child.getState()] = child.getCost();
+				if (costMap.count(child.getState()) == 0)
+					costMap[child.getState()] = child.getCost();
+				else if (child.getCost()<costMap[child.getState()])
+					costMap[child.getState()] = child.getCost();
+				
 			}
 		}
 
@@ -272,12 +280,15 @@ Solution Search::Astar(Problem problem)
 			{
 				accumCost = node.getCost() + child.getCost();
 				child.setCost(accumCost);
-				if(costMap.count(child.getState())==0)
-					costMap[child.getState()] = child.getCost();
-				else if(child.getCost()<costMap[child.getState()])
-					costMap[child.getState()] = child.getCost();
 				frontier.push(child);
-				parent[child.getState()] = child.getParent();
+				if (parent.count(child.getState()) == 0)
+					parent[child.getState()] = child.getParent();
+				else if (child.getCost()<costMap[child.getState()])
+					costMap[child.getState()] = child.getCost();
+				if (costMap.count(child.getState()) == 0)
+					costMap[child.getState()] = child.getCost();
+				else if (child.getCost()<costMap[child.getState()])
+					costMap[child.getState()] = child.getCost();
 			}
 		}
 
