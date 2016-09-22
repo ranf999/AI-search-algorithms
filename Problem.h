@@ -40,7 +40,7 @@ class NodeCmpSunday
 public:
 	bool operator() (const Node &lhs, const Node &rhs) const
 	{
-		if(lhs.sunday+lhs.cost > rhs.sunday+rhs.cost)
+		if(lhs.cost > rhs.cost)
 			return true;
 		else
 			return false;

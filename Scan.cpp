@@ -82,15 +82,16 @@ unordered_map<string,vector<Node>> Scan::getMap(vector<string> file)
 unordered_map<string,int> Scan::getSunday(vector<string> file)
 {
 	int line,sundayNum;
-	string route,state,cost;
+	string route;
 	unordered_map<string,int> sunday;
 	line = 4 + atoi(file[3].c_str());
 	sundayNum = atoi(file[line].c_str());
 	
 	for(int i=0;i<sundayNum;i++)
 	{
+		string state,cost;
 		int cnt=0;
-		route = file[line+i];
+		route = file[line+i+1];
 		for(int j=0;j<route.length();j++)
 		{
 			if(route[j]!=' ')
@@ -109,7 +110,7 @@ unordered_map<string,int> Scan::getSunday(vector<string> file)
 			}
 			else
 			{ 
-				if(route[j+1]==' ')
+				if(route[j+1]!=' ')
 					cnt++;
 				continue;
 			}
